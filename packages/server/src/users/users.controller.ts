@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Put, Delete, Param, HttpStatus } from '@nestjs/common'
 
 import { UsersService } from './users.service'
+import { UsersDTO } from './users.dto'
 
 @Controller('users')
 export class UsersController {
@@ -15,7 +16,7 @@ export class UsersController {
   }
 
   @Post()
-  async createUser(@Body() data) {
+  async createUser(@Body() data: UsersDTO) {
     return {
       statusCode: HttpStatus.OK,
       message: 'User added successfully',
@@ -32,7 +33,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  async updateUser(@Param('id') id: number, @Body() data) {
+  async updateUser(@Param('id') id: number, @Body() data: Partial<UsersDTO>) {
     return {
       statusCode: HttpStatus.OK,
       message: 'User update successfully',
