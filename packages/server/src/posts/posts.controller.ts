@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, HttpStatus } from '@nestjs/common'
 
 import { PostsService } from './posts.service'
+import { PostsDTO } from './posts.dto'
 
 @Controller('posts')
 export class PostsController {
@@ -15,7 +16,7 @@ export class PostsController {
   }
 
   @Post()
-  async createPost(@Body() data) {
+  async createPost(@Body() data: PostsDTO) {
     return {
       statusCode: HttpStatus.OK,
       message: 'Post added successfully',
@@ -32,7 +33,7 @@ export class PostsController {
   }
 
   @Put(':id')
-  async updatePost(@Param('id') id: number, @Body() data) {
+  async updatePost(@Param('id') id: number, @Body() data: Partial<PostsDTO>) {
     return {
       statusCode: HttpStatus.OK,
       message: 'Post update successfully',
